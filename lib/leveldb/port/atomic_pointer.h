@@ -21,7 +21,7 @@
 
 #include <stdint.h>
 #ifdef LEVELDB_CSTDATOMIC_PRESENT
-#include <cstdatomic>
+#include <atomic>
 #endif
 #ifdef OS_WIN
 #include <windows.h>

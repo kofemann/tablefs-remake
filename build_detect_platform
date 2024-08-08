@@ -51,16 +51,16 @@ echo "LEVELDBLIB=$LEVELDBLIB" >> build_config.mk
 # On GCC, use libc's memcmp, not GCC's memcmp
 PORT_CFLAGS="-fno-builtin-memcmp"
 
-# Detect C++0x -- this determines whether we'll use port_noatomic.h
+# Detect C++14 -- this determines whether we'll use port_noatomic.h
 # or port_posix.h by:
-# 1. Rrying to compile with -std=c++0x and including <cstdatomic>.
+# 1. Rrying to compile with -std=c++14 and including <atomic>.
 # 2. If g++ returns error code, we know to use port_posix.h
-g++ $CFLAGS -std=c++0x -x c++ - -o /dev/null 2>/dev/null  <<EOF
-  #include <cstdatomic>
+g++ $CFLAGS -std=c++14 -x c++ - -o /dev/null 2>/dev/null  <<EOF
+  #include <atomic>
   int main() {}
 EOF
 if [ "$?" = 0 ]; then
-    PORT_CFLAGS="$PORT_CFLAGS -DLEVELDB_PLATFORM_POSIX -DLEVELDB_CSTDATOMIC_PRESENT -std=c++0x"
+    PORT_CFLAGS="$PORT_CFLAGS -DLEVELDB_PLATFORM_POSIX -DLEVELDB_CSTDATOMIC_PRESENT -std=c++14"
 else
     PORT_CFLAGS="$PORT_CFLAGS -DLEVELDB_PLATFORM_POSIX"
 fi

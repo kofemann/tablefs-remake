@@ -8,9 +8,11 @@
 
 static void usage()
 {
+    fprintf(stderr,"USAGE:\n");
     fprintf(stderr,
-            "USAGE:  tablefs <FUSEmount> <threshold> <METADIR> <DATADIR> <LOGFILE>\n");
-    abort();
+            "    tablefs -mountdir <MOUNT DIR> -metadir <METADATA DIR> -datadir <DATA DIR>\n\n");
+
+    exit(1);
 }
 
 static tablefs::TableFS *fs;
@@ -96,6 +98,11 @@ static struct fuse_operations tablefs_operations;
 
 int main(int argc, char *argv[])
 {
+
+  if (argc < 6) {
+    usage();
+  }
+
   tablefs::Properties prop;
   prop.parseOpts(argc, argv);
 

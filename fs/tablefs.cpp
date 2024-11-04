@@ -157,7 +157,9 @@ void TableFS::InitStat(tfs_stat_t &statbuf,
     statbuf.st_nlink = 2;
   }
   time_t now = time(NULL);
+  statbuf.st_atim.tv_sec = now;
   statbuf.st_atim.tv_nsec = 0;
+  statbuf.st_mtim.tv_sec = now;
   statbuf.st_mtim.tv_nsec = 0;
   statbuf.st_ctim.tv_sec = now;
   statbuf.st_ctim.tv_nsec = 0;

@@ -10,7 +10,7 @@ static void usage()
 {
     fprintf(stderr,"USAGE:\n");
     fprintf(stderr,
-            "    tablefs -mountdir <MOUNT DIR> -metadir <METADATA DIR> -datadir <DATA DIR>\n\n");
+            "    tablefs -mountdir <MOUNT DIR> -metadir <METADATA DIR> -datadir <DATA DIR> [-logfile <LOG FILE>]\n\n");
 
     exit(1);
 }
